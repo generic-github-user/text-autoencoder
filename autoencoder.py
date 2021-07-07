@@ -125,3 +125,10 @@ for l in decoder_layers:
     model.add(l)
 
 model.summary()
+
+
+# In[162]:
+
+
+def decode(t):
+    return ''.join(charset[int(np.clip(0, len(charset)-1, i))] for i in tf.argmax(t, axis=1)[0])
