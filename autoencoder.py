@@ -163,3 +163,31 @@ model.compile(
 
 
 history = model.fit(text_data, text_data, epochs=1000)
+
+
+# In[189]:
+
+
+plt.plot(history.history['loss'])
+
+
+# In[190]:
+
+
+def reconstruct():
+    return decode(model(text_data))
+    
+reconstruct()
+
+
+# In[191]:
+
+
+sample()
+
+
+# In[ ]:
+
+
+
+
