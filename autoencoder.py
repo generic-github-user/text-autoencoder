@@ -14,3 +14,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 import string
 import pathlib
+
+
+# In[47]:
+
+
+charset = ''.join([string.ascii_lowercase, string.ascii_uppercase, string.digits, string.punctuation, ' '])
+
+
+# In[9]:
+
+
+data_url = 'https://storage.googleapis.com/download.tensorflow.org/data/stack_overflow_16k.tar.gz'
+dataset_dir = utils.get_file(
+    'so_text_dataset',
+    origin=data_url,
+    untar=True,
+    cache_dir='stack_overflow',
+    cache_subdir='')
