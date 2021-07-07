@@ -142,3 +142,24 @@ def sample():
     return y
 
 sample()
+
+
+# In[136]:
+
+
+model(text_data)
+
+
+# In[175]:
+
+
+model.compile(
+    tf.keras.optimizers.Adam(learning_rate=0.001),
+    losses.mean_squared_error
+)
+
+
+# In[188]:
+
+
+history = model.fit(text_data, text_data, epochs=1000)
