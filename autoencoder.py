@@ -78,3 +78,27 @@ def one_hot(text):
     return encoded
 
 one_hot('test data')
+
+
+# In[144]:
+
+
+def prep_data(x):
+    x = x.numpy().decode('ascii')
+    x = x[:50]
+    c = one_hot(x + ' ' * (50 - len(x)))
+    return c
+
+
+# In[174]:
+
+
+text_data = []
+for a, b in raw_train_ds.take(10):
+    print(len(a), len(b))
+#     for i in range(5):
+#         print(a[i])
+#         print(b[i])
+    print(a[0].numpy().decode('ascii'))
+    text_data.append(prep_data(a[0]))
+text_data = np.array(text_data)
