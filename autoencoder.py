@@ -102,3 +102,26 @@ for a, b in raw_train_ds.take(10):
     print(a[0].numpy().decode('ascii'))
     text_data.append(prep_data(a[0]))
 text_data = np.array(text_data)
+
+
+# In[86]:
+
+
+text_data
+
+
+# In[148]:
+
+
+num_chars = len(charset)
+model = tf.keras.models.Sequential([
+    layers.LSTM(5, input_shape=(50, num_chars,)),
+])
+decoder_layers = [
+    layers.RepeatVector(50),
+    layers.LSTM(num_chars, return_sequences=True),
+]
+for l in decoder_layers:
+    model.add(l)
+
+model.summary()
