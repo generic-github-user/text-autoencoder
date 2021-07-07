@@ -32,3 +32,26 @@ dataset_dir = utils.get_file(
     untar=True,
     cache_dir='stack_overflow',
     cache_subdir='')
+
+
+# In[11]:
+
+
+dataset_dir = pathlib.Path(dataset_dir).parent
+
+
+# In[12]:
+
+
+dataset_dir
+
+
+# In[52]:
+
+
+raw_train_ds = preprocessing.text_dataset_from_directory(
+    dataset_dir/'train',
+    batch_size=1,
+    validation_split=0.2,
+    subset='training',
+    seed=42)
