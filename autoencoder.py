@@ -55,3 +55,26 @@ raw_train_ds = preprocessing.text_dataset_from_directory(
     validation_split=0.2,
     subset='training',
     seed=42)
+
+
+# In[90]:
+
+
+def one_hot(text):
+    s = '[SEP]'
+#     encoded = tf.keras.preprocessing.text.one_hot(
+#         s.join(text),
+#         len(charset),
+#         filters='\t\n',
+#         lower=False, split=s
+#     )
+    encoded = []
+    for c in text:
+        if c in charset:
+            encoded.append(charset.index(c))
+        else:
+            encoded.append(charset.index(' '))
+    encoded = tf.one_hot(encoded, len(charset))
+    return encoded
+
+one_hot('test data')
