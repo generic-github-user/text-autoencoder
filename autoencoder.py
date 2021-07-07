@@ -132,3 +132,13 @@ model.summary()
 
 def decode(t):
     return ''.join(charset[int(np.clip(0, len(charset)-1, i))] for i in tf.argmax(t, axis=1)[0])
+    
+def sample():
+    noise = np.random.uniform(0, 1, [1, 5])
+    pred = noise
+    for l in decoder_layers:
+        pred = l(pred)
+    y = decode(pred)
+    return y
+
+sample()
