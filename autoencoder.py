@@ -140,10 +140,15 @@ encoder_layers = [
 #     layers.Dense(2, activation=activation)
 ]
 decoder_layers = [
-    layers.RepeatVector(50),
-    layers.LSTM(num_chars, return_sequences=True),
+    layers.Dense(5, activation=activation),
+#     layers.RepeatVector(50),
+    layers.Dense(10, activation=activation),
+    
+    layers.Dense(50, activation=activation),
+    layers.Reshape((50, 1))
+#     layers.LSTM(num_chars, return_sequences=True, activation='elu'),
 ]
-for l in decoder_layers:
+for l in encoder_layers + decoder_layers:
     model.add(l)
 
 model.summary()
