@@ -75,3 +75,25 @@ nltk.download('gutenberg')
 hamlet = nltk.corpus.gutenberg.raw('shakespeare-hamlet.txt')
 # hamlet = ' '.join(words)
 print(hamlet[:100])
+
+
+# In[80]:
+
+
+chars = string.punctuation + string.digits# + string.ascii_letters
+chars = list(chars) + [chr(n) for n in range(161, 256)]
+chars = set(chars) - set(['"', "'", '\\', '&'])
+replacements = []
+for l in range(1, 3):
+    spans = [''.join(c) for c in itertools.combinations_with_replacement(chars, r=l)]
+    random.shuffle(spans)
+    replacements.extend(spans)
+print(len(replacements))
+print(replacements[:20])
+# random.shuffle(replacements)
+
+
+# In[6]:
+
+
+# replacements[:100]
