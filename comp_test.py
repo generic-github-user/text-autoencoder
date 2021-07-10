@@ -179,3 +179,38 @@ print(decompress(compressed, reps, sections, **argdict))
 enc = 'UTF-8'
 c = zlib.compress(original.encode(enc))#.decode(enc)
 base64.b64encode(c)
+
+
+# In[67]:
+
+
+reconstructed = compressed
+# u = random.randint(0, len(reconstructed))
+# reconstructed = reconstructed[:u] + '?' + reconstructed[u:]
+
+
+# In[124]:
+
+
+def detach(text, x, f=''):
+    return text[:x] + f + text[x+1:]
+
+variations = []
+for i in range(10):
+    newstring = compressed
+    for j in range(random.randint(1, 400)):
+        c = random.choice(list(chars)+['']*2)
+        newstring = detach(newstring, random.randint(0, len(newstring)), c)
+    variations.append(newstring)
+
+reconstructed = variations[0]
+
+print(decompress(reconstructed[:s], reps, sections, **argdict))
+# todo: sort by frequency
+
+
+# In[208]:
+
+
+len(hamlet)
+
