@@ -108,3 +108,21 @@ lengths = list(map(len, words))
 x, y = np.array(positions).T
 plot = seaborn.scatterplot(x=x, y=y, size=1, alpha=0.2, c=lengths)
 seaborn.set(rc={'figure.figsize':(11, 11)})
+offset = np.array([0, 0.3])
+for i, l in enumerate(labels):
+    if i % (len(labels) // 50) == 0:
+        plot.text(*positions[i]+offset, 
+             l, horizontalalignment='center')
+
+
+# In[78]:
+
+
+positions
+
+
+# In[67]:
+
+
+list(zip(words, terms))[0]
+
