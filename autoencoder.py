@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[156]:
+# In[1]:
 
 
 import tensorflow as tf
@@ -16,13 +16,13 @@ import string
 import pathlib
 
 
-# In[47]:
+# In[2]:
 
 
 charset = ''.join([string.ascii_lowercase, string.ascii_uppercase, string.digits, string.punctuation, ' '])
 
 
-# In[9]:
+# In[3]:
 
 
 data_url = 'https://storage.googleapis.com/download.tensorflow.org/data/stack_overflow_16k.tar.gz'
@@ -34,19 +34,19 @@ dataset_dir = utils.get_file(
     cache_subdir='')
 
 
-# In[11]:
+# In[4]:
 
 
 dataset_dir = pathlib.Path(dataset_dir).parent
 
 
-# In[12]:
+# In[5]:
 
 
 dataset_dir
 
 
-# In[52]:
+# In[6]:
 
 
 raw_train_ds = preprocessing.text_dataset_from_directory(
@@ -57,7 +57,7 @@ raw_train_ds = preprocessing.text_dataset_from_directory(
     seed=42)
 
 
-# In[90]:
+# In[30]:
 
 
 def one_hot(text):
@@ -68,6 +68,7 @@ def one_hot(text):
 #         filters='\t\n',
 #         lower=False, split=s
 #     )
+    text = text.lower()
     encoded = []
     for c in text:
         if c in charset:
@@ -84,7 +85,7 @@ one_hot('test data')
 
 
 def prep_data(x):
-    x = x.numpy().decode('ascii')
+    x = x.numpy().decode('UTF-8')
     x = x[:50]
     c = one_hot(x + ' ' * (50 - len(x)))
     return c
@@ -104,13 +105,13 @@ for a, b in raw_train_ds.take(10):
 text_data = np.array(text_data)
 
 
-# In[86]:
+# In[41]:
 
 
-text_data
+# text_data.shape
 
 
-# In[148]:
+# In[183]:
 
 
 num_chars = len(charset)
@@ -127,7 +128,7 @@ for l in decoder_layers:
 model.summary()
 
 
-# In[162]:
+# In[185]:
 
 
 def decode(t):
@@ -144,7 +145,13 @@ def sample():
 sample()
 
 
-# In[136]:
+# In[186]:
+
+
+text_data.shape
+
+
+# In[187]:
 
 
 model(text_data)
@@ -171,16 +178,17 @@ history = model.fit(text_data, text_data, epochs=1000)
 plt.plot(history.history['loss'])
 
 
-# In[190]:
+# In[199]:
 
 
 def reconstruct():
     return decode(model(text_data))
     
+print(decode(text_data))
 reconstruct()
 
 
-# In[191]:
+# In[200]:
 
 
 sample()
