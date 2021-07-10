@@ -61,3 +61,17 @@ text = 'I have neither a fear, nor a presentiment, nor a hope of death. Why shou
 m = ic(text)
 n = ic(text+' t')
 print(m, n, m-(n*(10**round(len(str(m/n))))))
+
+
+# In[2]:
+
+
+nltk.download('gutenberg')
+
+
+# In[3]:
+
+
+hamlet = nltk.corpus.gutenberg.raw('shakespeare-hamlet.txt')
+# hamlet = ' '.join(words)
+print(hamlet[:100])
