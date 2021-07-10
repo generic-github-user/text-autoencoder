@@ -170,7 +170,9 @@ def sample():
     y = decode(pred)
     return y
 
-sample()
+f = sample()
+print(f, len(f))
+# reconstruct()
 
 
 # In[186]:
@@ -185,12 +187,19 @@ text_data.shape
 model(text_data)
 
 
-# In[175]:
+# In[188]:
+
+
+encoder_layers[1](encoder_layers[0](text_data))
+
+
+# In[189]:
 
 
 model.compile(
     tf.keras.optimizers.Adam(learning_rate=0.001),
     losses.mean_squared_error
+#     loss=tf.edit_distance
 )
 
 
