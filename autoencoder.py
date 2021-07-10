@@ -19,7 +19,13 @@ import pathlib
 # In[2]:
 
 
-charset = ''.join([string.ascii_lowercase, string.ascii_uppercase, string.digits, string.punctuation, ' '])
+charset = ''.join([
+    string.ascii_lowercase,
+#     string.ascii_uppercase,
+#     string.digits,
+#     string.punctuation,
+    ' '
+])
 
 
 # In[3]:
@@ -60,7 +66,7 @@ raw_train_ds = preprocessing.text_dataset_from_directory(
 # In[30]:
 
 
-def one_hot(text):
+def one_hot(text, onehot=True):
     s = '[SEP]'
 #     encoded = tf.keras.preprocessing.text.one_hot(
 #         s.join(text),
@@ -75,19 +81,22 @@ def one_hot(text):
             encoded.append(charset.index(c))
         else:
             encoded.append(charset.index(' '))
-    encoded = tf.one_hot(encoded, len(charset))
+    if onehot:
+        encoded = tf.one_hot(encoded, len(charset))
+    else:
+        encoded = np.expand_dims(encoded, 1)
     return encoded
 
-one_hot('test data')
+one_hot('test data', onehot=False)
 
 
-# In[144]:
+# In[31]:
 
 
 def prep_data(x):
     x = x.numpy().decode('UTF-8')
     x = x[:50]
-    c = one_hot(x + ' ' * (50 - len(x)))
+    c = one_hot(x + ' ' * (50 - len(x)), onehot=False)
     return c
 
 
@@ -131,9 +140,11 @@ model.summary()
 # In[185]:
 
 
-def decode(t):
-    return ''.join(charset[int(np.clip(0, len(charset)-1, i))] for i in tf.argmax(t, axis=1)[0])
-    
+def decode(t, onehot=False):
+    if onehot:
+        return ''.join(charset[int(np.clip(0, len(charset)-1, i))] for i in tf.argmax(t[0], axis=1))
+    else:
+        return ''.join(charset[int(np.clip(0, len(charset)-1, i))] for i in t[0])
 def sample():
     noise = np.random.uniform(0, 1, [1, 5])
     pred = noise
