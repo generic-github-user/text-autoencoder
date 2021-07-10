@@ -167,6 +167,12 @@ def decode(t, onehot=False):
         return ''.join(charset[int(np.clip(0, len(charset)-1, i))] for i in tf.argmax(t[0], axis=1))
     else:
         return ''.join(charset[int(np.clip(0, len(charset)-1, i))] for i in t[0])
+
+def run_encoder(pred):
+    for l in encoder_layers:
+        pred = l(pred)
+    return pred
+
 def sample():
     noise = np.random.uniform(0, 1, [1, 5])
     pred = noise
@@ -257,7 +263,8 @@ reconstruct()
 # In[200]:
 
 
-sample()
+for x in range(10):
+    print(sample())
 
 
 # In[ ]:
