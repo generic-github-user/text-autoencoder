@@ -71,3 +71,31 @@ def one_hot(text, onehot=True):
             encoded.append(charset.index(' '))
 #         encoded = np.expand_dims(encoded, 1)
     return np.array(encoded)
+
+
+# In[113]:
+
+
+# terms
+
+# list(zip([words, terms]))
+
+# [(w, t) for w, t in zip([words, terms])]
+
+
+# In[190]:
+
+
+# words = ['What a piece of work is a man! How noble in reason, how infinite in faculty!']
+words = []
+a = 'you may live to see man-made horrors beyond your comprehension'
+
+words += a.replace('-', ' ').split()
+words += random.choices(word_list, k=10000)
+
+ref = 'complex analysis is the field that studies'
+
+max_len = max(map(len, words+[ref]))
+print(max_len)
+ref_ = one_hot(pad(ref, n=max_len))
+terms = [one_hot(pad(t, n=max_len)) for t in words]
