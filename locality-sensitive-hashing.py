@@ -104,3 +104,7 @@ terms = [one_hot(pad(t, n=max_len)) for t in words]
 
 positions, labels = zip(*[([np.linalg.norm(t-ref_), fuzz.token_set_ratio(w, ref)], w) for w, t in zip(words, terms)])
 lengths = list(map(len, words))
+
+x, y = np.array(positions).T
+plot = seaborn.scatterplot(x=x, y=y, size=1, alpha=0.2, c=lengths)
+seaborn.set(rc={'figure.figsize':(11, 11)})
