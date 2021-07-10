@@ -100,18 +100,23 @@ def prep_data(x):
     return c
 
 
-# In[174]:
+# In[40]:
 
 
-text_data = []
-for a, b in raw_train_ds.take(10):
-    print(len(a), len(b))
-#     for i in range(5):
-#         print(a[i])
-#         print(b[i])
-    print(a[0].numpy().decode('ascii'))
-    text_data.append(prep_data(a[0]))
-text_data = np.array(text_data)
+def preprocess(n=250):
+    text_data = []
+    for a, b in raw_train_ds.take(n):
+    #     print(len(a), len(b))
+    #     for i in range(5):
+    #         print(a[i])
+    #         print(b[i])
+    #     print(a[0].numpy().decode('ascii'))
+        d = prep_data(a[0])
+        if not isinstance(d, np.ndarray):
+            d = d.numpy()
+        text_data.append(d)
+    text_data = np.stack(text_data)
+    return text_data
 
 
 # In[41]:
@@ -203,7 +208,13 @@ model.compile(
 )
 
 
-# In[188]:
+# In[190]:
+
+
+text_data = preprocess(1000)
+
+
+# In[191]:
 
 
 history = model.fit(text_data, text_data, epochs=1000)
