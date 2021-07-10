@@ -14,6 +14,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import string
 import pathlib
+from win10toast import ToastNotifier
+import random
+
+
+# In[152]:
+
+
+def notify(f, t):
+    def xfunc():
+        f()
+        toaster.show_toast(t)
+    return xfunc
 
 
 # In[2]:
