@@ -36,3 +36,28 @@ b = zlib.compress(b'plums and pears')
 
 
 z = zlib.compressobj(level=9)
+
+
+# In[150]:
+
+
+def int_comp(x):
+    return int.from_bytes(
+        zlib.compress(bytes(x, 'UTF-8')),
+        byteorder
+    )
+ic = int_comp
+
+
+# In[151]:
+
+
+text = 'I have neither a fear, nor a presentiment, nor a hope of death. Why should I? With my hard constitution and temperate mode of living, and unperilous occupations, I ought to, and probably shall, remain above ground till there is scarcely a black hair on my head. And yet I cannot continue in this condition!'
+
+
+# In[159]:
+
+
+m = ic(text)
+n = ic(text+' t')
+print(m, n, m-(n*(10**round(len(str(m/n))))))
