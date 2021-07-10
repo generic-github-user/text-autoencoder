@@ -99,3 +99,8 @@ max_len = max(map(len, words+[ref]))
 print(max_len)
 ref_ = one_hot(pad(ref, n=max_len))
 terms = [one_hot(pad(t, n=max_len)) for t in words]
+
+
+
+positions, labels = zip(*[([np.linalg.norm(t-ref_), fuzz.token_set_ratio(w, ref)], w) for w, t in zip(words, terms)])
+lengths = list(map(len, words))
