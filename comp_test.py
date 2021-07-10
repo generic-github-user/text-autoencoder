@@ -132,3 +132,12 @@ def compress(input_text, log=False, window_size=(2, 10, 1), separator='&'):
             if log:
                 print(len(compressed))
     return compressed, reps, sections
+
+
+# In[57]:
+
+
+def decompress(input_text, reps, sections, separator='&'):
+    for i, r in enumerate(reps[::-1]):
+        input_text = input_text.replace(r+separator, sections[len(reps)-i-1])
+    return input_text
