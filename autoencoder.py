@@ -209,7 +209,25 @@ model.compile(
 history = model.fit(text_data, text_data, epochs=1000)
 
 
-# In[189]:
+# In[164]:
+
+
+import tensorflow.python.ops.numpy_ops.np_config as npcfg
+npcfg.enable_numpy_behavior()
+
+
+# In[197]:
+
+
+# import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+plt.style.use('fivethirtyeight')
+# text_data = preprocess(1000)
+plt.scatter(*run_encoder(text_data).T[:2], alpha=1, s=6)
+plt.show()
+
+
+# In[198]:
 
 
 plt.plot(history.history['loss'])
