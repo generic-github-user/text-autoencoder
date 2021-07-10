@@ -141,3 +141,20 @@ def decompress(input_text, reps, sections, separator='&'):
     for i, r in enumerate(reps[::-1]):
         input_text = input_text.replace(r+separator, sections[len(reps)-i-1])
     return input_text
+
+
+# In[103]:
+
+
+argdict = {
+    'separator': ''
+}
+a, r, s = compress('grapes, bananas, apples, peaches, and bananas', window_size=(2, 10, 1), **argdict)
+print(a)
+print(decompress(a, r, s, **argdict))
+
+
+# In[106]:
+
+
+decompress('grÈ+¡6Èpl+peach+and ¡', r, s, **argdict)
