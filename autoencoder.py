@@ -123,10 +123,22 @@ text_data = np.array(text_data)
 # In[183]:
 
 
-num_chars = len(charset)
-model = tf.keras.models.Sequential([
-    layers.LSTM(5, input_shape=(50, num_chars,)),
-])
+# num_chars = len(charset)
+num_chars = 1
+model = tf.keras.models.Sequential()
+
+encoder_shape = []
+
+activation = 'softplus'
+encoder_layers = [
+    #timedistributed layer?
+    layers.Flatten(input_shape=(50, num_chars,)),
+    layers.Dense(20, activation=activation),
+#     layers.LSTM(10, activation='tanh', return_sequences=True),
+#     layers.LSTM(10, input_shape=(50, num_chars,), activation='tanh', return_sequences=False),
+    layers.Dense(5, activation=activation),
+#     layers.Dense(2, activation=activation)
+]
 decoder_layers = [
     layers.RepeatVector(50),
     layers.LSTM(num_chars, return_sequences=True),
