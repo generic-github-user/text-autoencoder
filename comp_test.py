@@ -158,3 +158,24 @@ print(decompress(a, r, s, **argdict))
 
 
 decompress('grÈ+¡6Èpl+peach+and ¡', r, s, **argdict)
+
+
+# In[108]:
+
+
+s = 500
+h = hamlet[:1000]
+wa = (2, 20, 1)
+wb = (10, 2, -1)
+compressed, reps, sections = compress(h, window_size=wa, log=True, **argdict)
+original = h
+print(original[:s], '\n'*4, compressed[:], '\n'*4)
+print(decompress(compressed, reps, sections, **argdict))
+
+
+# In[344]:
+
+
+enc = 'UTF-8'
+c = zlib.compress(original.encode(enc))#.decode(enc)
+base64.b64encode(c)
