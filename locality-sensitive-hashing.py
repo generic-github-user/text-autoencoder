@@ -11,3 +11,16 @@ from fuzzywuzzy import fuzz, process
 import seaborn
 import matplotlib.pyplot as plt
 import random
+
+
+# In[96]:
+
+
+import nltk
+nltk.download('words')
+
+
+# In[99]:
+
+
+word_list = words.words()
