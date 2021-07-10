@@ -97,3 +97,38 @@ print(replacements[:20])
 
 
 # replacements[:100]
+
+
+# In[56]:
+
+
+def compress(input_text, log=False, window_size=(2, 10, 1), separator='&'):
+    sections = {}
+    w = 0
+    reps = []
+    checked = []
+    
+    original = input_text
+    compressed = input_text
+    
+    for k in range(5):
+        print(f'Compression pass {k+1}')
+        for i in range(*window_size):
+            if log:
+                print(f'Scanning sequences of length {i}')
+            for j in range(0, len(compressed)-i):
+                window = compressed[j:j+i]
+                if window and window not in checked and compressed.count(window) > 1 and window not in sections.values():
+                    for rep in replacements:
+                        if rep not in compressed and len(window) > len(rep)+len(separator):
+                            sections[w] = window
+                            reps.append(rep)
+                            w += 1
+                #             print(window)
+        #                     r = f'[{w}]'
+                            compressed = compressed.replace(window, rep+separator)
+                            break
+                checked.append(window)
+            if log:
+                print(len(compressed))
+    return compressed, reps, sections
