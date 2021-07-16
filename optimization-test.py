@@ -56,3 +56,7 @@ w, h = (5,)*2
 limit = np.array([ih-float(w), iw-float(h)])
 print(limit.dtype)
 swatches = 300
+positions = np.random.randint(0, limit, [swatches, 2])
+color_init = np.random.uniform(-0.1, 0.1, [swatches, 3])
+
+patch = np.random.uniform(-1., 1., [w, h, 3])
