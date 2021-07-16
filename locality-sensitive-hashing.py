@@ -229,3 +229,14 @@ ax.set_yticklabels(ax.get_ymajorticklabels(), fontdict=font)
 
 fig.tight_layout()
 plt.show()
+
+
+# In[565]:
+
+
+n = 200
+dims = 4
+sentences = random.choices(hamlet, k=n)
+sentences = [s[:10] for s in sentences]
+positions = np.random.uniform(-10, 10, [n, dims])
+loss = []
