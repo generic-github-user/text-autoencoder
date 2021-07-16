@@ -29,32 +29,35 @@ import matplotlib
 # In[2]:
 
 
-# In[96]:
+bytes
+
+
+# In[3]:
 
 
 import nltk
 nltk.download('words')
 
 
-# In[99]:
+# In[4]:
 
 
 word_list = words.words()
 
 
-# In[83]:
+# In[5]:
 
 
 seaborn.set_theme()
 
 
-# In[76]:
+# In[6]:
 
 
 ord('a')
 
 
-# In[56]:
+# In[7]:
 
 
 charset = ''.join([
@@ -66,7 +69,7 @@ charset = ''.join([
 ])
 
 
-# In[57]:
+# In[8]:
 
 
 def pad(x, n=10):
@@ -74,7 +77,7 @@ def pad(x, n=10):
     return x + ' ' * (n - len(x))
 
 
-# In[58]:
+# In[9]:
 
 
 def one_hot(text, onehot=True):
@@ -89,7 +92,7 @@ def one_hot(text, onehot=True):
     return np.array(encoded)
 
 
-# In[113]:
+# In[10]:
 
 
 # terms
@@ -99,7 +102,7 @@ def one_hot(text, onehot=True):
 # [(w, t) for w, t in zip([words, terms])]
 
 
-# In[190]:
+# In[61]:
 
 
 # words = ['What a piece of work is a man! How noble in reason, how infinite in faculty!']
@@ -129,15 +132,16 @@ for i, l in enumerate(labels):
     if i % (len(labels) // 50) == 0:
         plot.text(*positions[i]+offset, 
              l, horizontalalignment='center')
+# plt.show()
 
 
-# In[78]:
+# In[12]:
 
 
 positions
 
 
-# In[67]:
+# In[13]:
 
 
 list(zip(words, terms))[0]
