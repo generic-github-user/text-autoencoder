@@ -36,13 +36,13 @@ bytes
 
 
 import nltk
-nltk.download('words')
+word_data = nltk.download('words')
 
 
 # In[4]:
 
 
-word_list = words.words()
+word_list = nltk.corpus.words.words()
 
 
 # In[5]:
