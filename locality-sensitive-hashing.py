@@ -240,3 +240,6 @@ sentences = random.choices(hamlet, k=n)
 sentences = [s[:10] for s in sentences]
 positions = np.random.uniform(-10, 10, [n, dims])
 loss = []
+
+b_size = 100
+distances = np.array([[dist(s, s2) for s2 in sentences[:b_size]] for s in sentences])
