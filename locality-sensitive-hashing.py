@@ -146,3 +146,14 @@ positions
 
 list(zip(words, terms))[0]
 
+
+# In[305]:
+
+
+def comp_str(x):
+    data = zlib.compress(x.encode('UTF-8'))
+    return base64.b64encode(data)
+#     return int.from_bytes(data, 'big')
+#     return int(data, base=2)
+#     return str(data, encoding='ASCII')
+#     return ''.join(format(y, 'b') for y in bytearray(data))
