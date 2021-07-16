@@ -168,3 +168,47 @@ def words_to_sent(w):
 # hamlet = [words_to_sent(S) for S in hamlet]
 hamlet = list(map(words_to_sent, hamlet))
 hamlet = list(filter(lambda l: len(l) >= 10, hamlet))
+
+
+# In[18]:
+
+
+hamlet[570]
+
+
+# In[30]:
+
+
+from heatmap import heatmap, annotate_heatmap
+
+
+# In[70]:
+
+
+sentences_a = random.choices(hamlet, k=10)
+# sentences_b = sentences_a
+sentences_b = random.choices(hamlet, k=10)
+
+plt.close('all')
+plt.rcParams['axes.grid'] = False
+# fig = plt.figure(figsize=(10, 5))
+fig = plt.figure()
+ax = fig.subplots()
+
+# seaborn.reset_orig()
+# seaborn.reset_defaults()
+# matplotlib.rc_file_defaults()
+
+
+plt.style.use('fivethirtyeight')
+values = np.array([[dist(a, b) for b in sentences_b] for a in sentences_a])
+def abbr(v):
+    return [z[:30] for z in v]
+im, cbar = heatmap(values, abbr(sentences_a), abbr(sentences_b), ax=ax, cbarlabel='Similarity', cmap='inferno')
+# texts = annotate_heatmap(im)
+font = {'fontsize': 12}
+ax.set_xticklabels(ax.get_xmajorticklabels(), fontdict=font)
+ax.set_yticklabels(ax.get_ymajorticklabels(), fontdict=font)
+
+fig.tight_layout()
+plt.show()
