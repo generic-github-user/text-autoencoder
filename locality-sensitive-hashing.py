@@ -168,6 +168,12 @@ def dist(m, n):
 #     return fuzz.partial_ratio(comp_str(m), comp_str(n))
     return fuzz.partial_ratio(m, n)
 # log distance?
+
+# combinations or cartesian product?
+for j, k in itertools.combinations([a, b, c], 2):
+    print(' | '.join(map(str, [j[:10], k[:10], dist(j, k), fuzz.partial_ratio(j, k)])))
+
+
 # In[50]:
 
 
