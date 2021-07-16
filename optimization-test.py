@@ -60,3 +60,25 @@ positions = np.random.randint(0, limit, [swatches, 2])
 color_init = np.random.uniform(-0.1, 0.1, [swatches, 3])
 
 patch = np.random.uniform(-1., 1., [w, h, 3])
+
+
+# In[29]:
+
+
+def generate(zx, zy, z2):
+    zx = np.array(zx)
+    zy = np.array(zy)
+    c = np.zeros_like(image_data, dtype=float)
+#     Explicitly indexing the position array seems to alleviate the random kernel crashes
+    for p in range(zx.shape[0]):
+#         x, y = tuple(p.astype(int))
+#         x, y = tuple(z1[p])
+        x = zx[p]
+        y = zy[p]
+        x = round(x)
+        y = round(y)
+        g = z2[p]
+#         print(x, y, x+w, y+h, c[x:x+w, y:y+h].shape, g.shape, g.dtype)
+        c[x:x+w, y:y+h] += g#+= patch
+#     return np.clip(c, 0., 1.)
+    return c
