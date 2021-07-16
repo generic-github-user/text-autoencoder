@@ -82,3 +82,11 @@ def generate(zx, zy, z2):
         c[x:x+w, y:y+h] += g#+= patch
 #     return np.clip(c, 0., 1.)
     return c
+    
+def loss(qx:np.ndarray, qy:np.ndarray, q2:np.ndarray, noisy=True) -> float:
+    canvas = generate(qx, qy, q2)
+#     print(canvas.shape)
+    d = np.mean((canvas - image_data) ** 2)
+#     d = np.mean(np.abs(canvas - image_data))
+#     print(d)
+    return d
