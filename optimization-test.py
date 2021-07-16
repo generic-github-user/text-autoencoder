@@ -26,3 +26,16 @@ def load_image( infilename, scale=0.05) :
     img.load()
     data = np.asarray( img.resize(tuple((np.array(img.size) * scale).round().astype(int))), dtype="int32" )
     return data
+
+
+# In[4]:
+
+
+image_data = (load_image('test-image.jpg')/255).astype(float)#.mean(axis=2)
+plt.imshow(image_data, cmap='inferno')
+
+
+# In[5]:
+
+
+# ng.optimizers.NGOpt13
