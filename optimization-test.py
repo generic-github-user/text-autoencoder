@@ -39,3 +39,20 @@ plt.imshow(image_data, cmap='inferno')
 
 
 # ng.optimizers.NGOpt13
+
+
+# In[6]:
+
+
+image_data.shape
+
+
+# In[20]:
+
+
+plt.close('all')
+ih, iw = image_data.shape[:2]
+w, h = (5,)*2
+limit = np.array([ih-float(w), iw-float(h)])
+print(limit.dtype)
+swatches = 300
