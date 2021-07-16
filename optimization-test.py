@@ -126,3 +126,28 @@ result = optimizer.minimize(generate)
 # print(result.value)
 # print(loss())
 plt.imshow(generate(*result.value[0]), cmap='inferno')
+
+
+# In[18]:
+
+
+result.value[0][2]
+
+
+# In[28]:
+
+
+generate(*result.value[0]).max()
+
+
+# In[27]:
+
+
+for i in range(5000):
+    loss(np.random.randint(0, limit, [50, 2]))
+
+
+# In[28]:
+
+
+loss()
