@@ -90,3 +90,28 @@ def loss(qx:np.ndarray, qy:np.ndarray, q2:np.ndarray, noisy=True) -> float:
 #     d = np.mean(np.abs(canvas - image_data))
 #     print(d)
     return d
+
+
+# In[34]:
+
+
+lim = [int(u) for u in limit.astype(int)]
+print(lim)
+
+optimizer = ng.optimizers.NGOpt(
+# optimizer = ng.optimizers.PortfolioDiscreteOnePlusOne(
+# optimizer = ng.optimizers.TwoPointsDE(
+#     parametrization=ng.p.Array(init=positions, lower=0., upper=limit),
+#     parametrization=ng.p.TransitionChoice(),
+    parametrization=ng.p.Instrumentation(
+#         ng.p.Array(
+#             ng.p.Scalar(),
+#             init=positions, lower=0., upper=limit
+#         ),
+        ng.p.TransitionChoice(lim[0], repetitions=swatches),
+        ng.p.TransitionChoice(lim[1], repetitions=swatches),
+        ng.p.Array(init=color_init, lower=-1., upper=1., mutable_sigma=False),
+#         .set_integer_casting()
+    ),
+    budget=100
+)
