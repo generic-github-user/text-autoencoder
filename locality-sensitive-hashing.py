@@ -157,6 +157,17 @@ def comp_str(x):
 #     return int(data, base=2)
 #     return str(data, encoding='ASCII')
 #     return ''.join(format(y, 'b') for y in bytearray(data))
+
+a = "Imperious Caesar, dead and turn'd to clay"
+b = "Caesar, Imperious, dead and turn'd to clay"
+c = "there is a kind of confession in your looks which your modesties have not craft enough to colour"
+print(comp_str(a))
+print(comp_str(b))
+
+def dist(m, n):
+#     return fuzz.partial_ratio(comp_str(m), comp_str(n))
+    return fuzz.partial_ratio(m, n)
+# log distance?
 # In[50]:
 
 
