@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[98]:
+# In[1]:
 
+
+get_ipython().run_line_magic('matplotlib', 'widget')
 
 from scipy import spatial
 import string
@@ -11,6 +13,20 @@ from fuzzywuzzy import fuzz, process
 import seaborn
 import matplotlib.pyplot as plt
 import random
+
+import zlib
+import base64
+import itertools
+import nltk
+
+
+# In[27]:
+
+
+import matplotlib
+
+
+# In[2]:
 
 
 # In[96]:
