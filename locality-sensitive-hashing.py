@@ -157,3 +157,14 @@ def comp_str(x):
 #     return int(data, base=2)
 #     return str(data, encoding='ASCII')
 #     return ''.join(format(y, 'b') for y in bytearray(data))
+# In[50]:
+
+
+hamlet = nltk.corpus.gutenberg.sents('shakespeare-hamlet.txt')
+def words_to_sent(w):
+    s = w[0]
+    s += ''.join([t if t in string.punctuation else ' '+t for t in w[1:]])
+    return s
+# hamlet = [words_to_sent(S) for S in hamlet]
+hamlet = list(map(words_to_sent, hamlet))
+hamlet = list(filter(lambda l: len(l) >= 10, hamlet))
