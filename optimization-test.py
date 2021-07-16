@@ -115,3 +115,14 @@ optimizer = ng.optimizers.NGOpt(
     ),
     budget=100
 )
+
+# TODO: image composition with cyclic & trigonometric functions
+
+
+# In[35]:
+
+
+result = optimizer.minimize(generate)
+# print(result.value)
+# print(loss())
+plt.imshow(generate(*result.value[0]), cmap='inferno')
